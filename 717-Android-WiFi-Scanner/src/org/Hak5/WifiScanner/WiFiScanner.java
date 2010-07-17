@@ -39,14 +39,25 @@ public class WiFiScanner extends Activity {
     }
 	
 	private void populate() {
+		// initialize text string
 		String text = "";
+		
+		// get wifi scan results
 		List<ScanResult> access_points = wifi.getScanResults();
+		
+		// loop through scan results
 		for(int i = 0 ; i < access_points.size() ; i++){
 			ScanResult ap = access_points.get(i);
 			text += "#SSID: " + ap.SSID + "/Security: " + ap.capabilities + "/Frequency: " + ap.frequency + "/DB: " + ap.level +"\n\n";
 		}
+		
+		// display text
 		textView.setText(text);
+		
+		// save results to log?
 		Log.d("Wifi Display", text);
+		
+		// start scan again
 		wifi.startScan();
 	}
     
